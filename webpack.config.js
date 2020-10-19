@@ -3,13 +3,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const isProduction = env.production;
+
 function srcPath(subdir) {
   return path.join(__dirname, "src", subdir);
 }
 
 module.exports = {
-  mode: "development",
-  devtool: "source-map",
+  mode: isProduction ? "production" : "development",
+  devtool: isProduction ? false : "source-map",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
