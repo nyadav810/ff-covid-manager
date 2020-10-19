@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"ffcovidmanagerf2f96e07": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
