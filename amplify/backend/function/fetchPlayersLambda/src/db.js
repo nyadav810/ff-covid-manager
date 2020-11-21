@@ -36,9 +36,10 @@ const getPlayerById = async (playerId) => {
   const db = makeDb(rds);
 
   try {
-    const player = await db.query("SELECT * FROM players WHERE player_id = ?", [
-      playerId,
-    ]);
+    const [player] = await db.query(
+      "SELECT * FROM players WHERE player_id = ?",
+      [playerId]
+    );
 
     return player;
   } catch (err) {

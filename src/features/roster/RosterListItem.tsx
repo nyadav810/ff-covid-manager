@@ -32,6 +32,13 @@ const RosterListItem: React.FC<Props> = ({
     </ListItemSecondaryAction>
   );
 
+  const fullName = `${player?.first_name} ${player?.last_name}`;
+  let positions = player?.fantasy_position_1;
+
+  if (player?.fantasy_position_2) {
+    positions += `, ${player?.fantasy_position_2}`;
+  }
+
   return (
     <ListItem>
       <ListItemAvatar>
@@ -40,8 +47,8 @@ const RosterListItem: React.FC<Props> = ({
         </Avatar>
       </ListItemAvatar>
       <ListItemText
-        primary={player?.full_name}
-        secondary={`${player?.position} - ${player?.team}`}
+        primary={fullName}
+        secondary={`${positions} - ${player?.team}`}
       />
       {isStarter && secondaryAction}
     </ListItem>

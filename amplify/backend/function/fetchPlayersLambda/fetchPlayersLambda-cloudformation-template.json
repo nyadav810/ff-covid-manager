@@ -63,7 +63,15 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-ff-covid-manager-production-180703-deployment",
-					"S3Key": "amplify-builds/fetchPlayersLambda-66627a514c4165537375-build.zip"
+					"S3Key": "amplify-builds/fetchPlayersLambda-4334506e50336358776e-build.zip"
+				},
+				"VpcConfig": {
+					"SecurityGroupIds": [
+						"sg-09f14210d94bdbf54"
+					],
+					"SubnetIds": [
+						"subnet-0cd7ad756e225e0e0"
+					]
 				}
 			}
 		},
@@ -144,6 +152,69 @@
 									}
 								]
 							}
+						},
+						{
+							"Action": [
+								"rds:*",
+								"application-autoscaling:DeleteScalingPolicy",
+								"application-autoscaling:DeregisterScalableTarget",
+								"application-autoscaling:DescribeScalableTargets",
+								"application-autoscaling:DescribeScalingActivities",
+								"application-autoscaling:DescribeScalingPolicies",
+								"application-autoscaling:PutScalingPolicy",
+								"application-autoscaling:RegisterScalableTarget",
+								"cloudwatch:DescribeAlarms",
+								"cloudwatch:GetMetricStatistics",
+								"cloudwatch:PutMetricAlarm",
+								"cloudwatch:DeleteAlarms",
+								"ec2:DescribeAccountAttributes",
+								"ec2:DescribeAvailabilityZones",
+								"ec2:DescribeInternetGateways",
+								"ec2:DescribeSecurityGroups",
+								"ec2:DescribeSubnets",
+								"ec2:DescribeVpcAttribute",
+								"ec2:DescribeVpcs",
+								"sns:ListSubscriptions",
+								"sns:ListTopics",
+								"sns:Publish",
+								"logs:DescribeLogStreams",
+								"logs:GetLogEvents",
+								"outposts:GetOutpostInstanceTypes"
+							],
+							"Effect": "Allow",
+							"Resource": "*"
+						},
+						{
+							"Action": "pi:*",
+							"Effect": "Allow",
+							"Resource": "arn:aws:pi:*:*:metrics/rds/*"
+						},
+						{
+							"Action": "iam:CreateServiceLinkedRole",
+							"Effect": "Allow",
+							"Resource": "*",
+							"Condition": {
+								"StringLike": {
+									"iam:AWSServiceName": [
+										"rds.amazonaws.com",
+										"rds.application-autoscaling.amazonaws.com"
+									]
+								}
+							}
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"logs:CreateLogGroup",
+								"logs:CreateLogStream",
+								"logs:PutLogEvents",
+								"ec2:CreateNetworkInterface",
+								"ec2:DescribeNetworkInterfaces",
+								"ec2:DeleteNetworkInterface",
+								"ec2:AssignPrivateIpAddresses",
+								"ec2:UnassignPrivateIpAddresses"
+							],
+							"Resource": "*"
 						}
 					]
 				}

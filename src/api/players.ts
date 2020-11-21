@@ -4,13 +4,13 @@ import Player from "types/Player";
 const apiName = "playerApi";
 
 export async function fetchPlayer(playerId: string): Promise<Player> {
-  const response = await API.get(apiName, `/players/${playerId}`, {})
-    .then((response) => response.data)
+  const player = await API.get(apiName, `/players/${playerId}`, {})
+    .then((response) => response)
     .catch((error) => {
       console.log(error.response);
     });
 
-  return response;
+  return player;
 }
 
 export async function fetchPlayers(playerIds: string[]): Promise<Player[]> {
