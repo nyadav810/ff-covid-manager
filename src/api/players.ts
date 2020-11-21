@@ -1,11 +1,14 @@
+import { API } from "aws-amplify";
 import Player from "types/Player";
 
-const PLAYERS_API_ENDPOINT = "http://localhost:3000";
+const apiName = "playerApi";
 
 export async function fetchPlayer(playerId: string): Promise<Player> {
-  const response = await fetch(
-    `${PLAYERS_API_ENDPOINT}/${playerId}`
-  ).then((response) => response.json());
+  const response = await API.get(apiName, `/players/${playerId}`, {})
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error.response);
+    });
 
   return response;
 }

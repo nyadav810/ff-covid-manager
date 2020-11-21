@@ -3,7 +3,7 @@ import {
   createSlice,
   SerializedError,
 } from "@reduxjs/toolkit";
-import { login, signup, verifyEmail } from "api/amplify";
+import { login, signup, verifyEmail } from "api/auth";
 
 interface LoginInfo {
   username: string;

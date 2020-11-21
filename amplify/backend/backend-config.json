@@ -6,5 +6,28 @@
 			"dependsOn": []
 		}
 	},
-	"hosting": {}
+	"hosting": {},
+	"function": {
+		"fetchPlayersLambda": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
+	},
+	"api": {
+		"playerApi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "fetchPlayersLambda",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	}
 }

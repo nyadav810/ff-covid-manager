@@ -39,7 +39,9 @@ const RosterList: React.FC = () => {
   const starterList = [];
 
   if (roster?.starters) {
-    const startersList = roster.starters.map(player => (
+    const startersList = roster.starters
+    .filter(player => player)
+    .map(player => (
       <div key={`roster-list-item-${player}`}>
         <RosterListItem
             playerId={player}
