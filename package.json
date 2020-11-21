@@ -8,7 +8,9 @@
     "clean": "rm -rf node_modules; rm -rf dist",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
-    "start": "webpack-dev-server --inline --hot --progress --open",
+    "local-upload": "node ./db/local-upload",
+    "seed-db": "node ./db/seed-db",
+    "start": "webpack-dev-server --inline --hot --progress --open --env.development",
     "test": "jest"
   },
   "author": "Naveen Yadav",
@@ -46,6 +48,7 @@
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.5.3",
     "mini-css-extract-plugin": "^1.0.0",
+    "mysql": "^2.18.1",
     "source-map-loader": "^1.1.1",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
